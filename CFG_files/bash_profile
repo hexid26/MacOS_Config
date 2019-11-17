@@ -1,0 +1,20 @@
+# 设置 ls -G 的颜色
+export LSCOLORS='exfxcxdxbxegedabagegeb'
+# LaTeX PATH
+export PATH=${PATH}:/Library/TeX/texbin
+# pyenv 环境变量，变换 Python 版本
+eval "$(pyenv init -)"
+
+# 添加 alias 程序
+alias l="ls -alG"
+alias ls="ls -aG"
+alias cd..="cd .."
+alias cleardsstore="sudo find / -name '.DS_Store' -depth -exec rm {} \;"
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+[[ $TERM_PROGRAM == "iTerm.app" ]] && test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+function iterm2_print_user_vars() {
+  iterm2_set_user_var currentPath $(echo ${PWD})
+  iterm2_set_user_var currentUser $(echo ${USER})
+}

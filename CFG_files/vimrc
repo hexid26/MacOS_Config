@@ -1,0 +1,113 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+set guifont=MesloLGS\ Nerd\ Font
+set laststatus=2
+set encoding=utf8
+set t_Co=256
+set number
+set fillchars+=stl:\ ,stlnc:\
+set termencoding=utf8
+set hlsearch
+set background=dark
+set clipboard=unnamedplus
+" assumes set ignorecase smartcase
+augroup dynamic_smartcase
+    autocmd!
+    autocmd CmdLineEnter : set ignorecase
+    autocmd CmdLineLeave : set noignorecase
+augroup END
+" syntax enable
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'hzchirs/vim-material'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'bagrat/vim-buffet'
+Plug 'honza/vim-snippets'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+if has("nvim")
+  Plug 'ncm2/ncm2-ultisnips'
+  Plug 'SirVer/ultisnips'
+endif
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+" autocmd VimEnter * PlugInstall
+" autocmd VimEnter * PlugUpdate
+
+" Config for vim-material
+let g:material_style='oceanic'
+colorscheme vim-material
+" Config for vim-buffet 
+let g:buffet_always_show_tabline = 1
+" let g:buffet_separator = " | "
+" let g:buffet_powerline_separators = 1
+let g:buffet_show_index = 1
+let g:buffet_new_buffer_name = "*"
+let g:buffet_modified_icon = "+"
+let g:buffet_tab_icon = "\uf00a"
+let g:buffet_left_trunc_icon = "\uf0a8"
+let g:buffet_right_trunc_icon = "\uf0a9"
+nmap <leader>1 <Plug>BuffetSwitch(1)
+nmap <leader>2 <Plug>BuffetSwitch(2)
+nmap <leader>3 <Plug>BuffetSwitch(3)
+nmap <leader>4 <Plug>BuffetSwitch(4)
+nmap <leader>5 <Plug>BuffetSwitch(5)
+nmap <leader>6 <Plug>BuffetSwitch(6)
+nmap <leader>7 <Plug>BuffetSwitch(7)
+nmap <leader>8 <Plug>BuffetSwitch(8)
+nmap <leader>9 <Plug>BuffetSwitch(9)
+nmap <leader>0 <Plug>BuffetSwitch(10)
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <Leader><Tab> :Bw<CR>
+noremap <Leader><S-Tab> :Bw!<CR>
+noremap <C-t> :enew<CR>
+
+" Config for vim-nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <C-\> :NERDTreeToggle<CR>
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:NERDTreeShowHidden=1
+
+" Config for vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='dark'
+
+" Config for ncm2-ultisnips
+if has("nvim")
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+endif
+set completeopt=noinsert,menuone,noselect
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+" make it fast
+let ncm2#popup_delay = 5
+let ncm2#complete_length = [[1, 1]]
+" Use new fuzzy based matches
+let g:ncm2#matcher = 'substrfuzzy'
+
+" Config for ultisnips
+let g:UltiSnipsListSnippets = "<c-Space>"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" let g:Powerline_symbols = 'fancy'
