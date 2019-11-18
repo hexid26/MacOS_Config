@@ -14,11 +14,13 @@ set termencoding=utf8
 set hlsearch
 set background=dark
 set clipboard=unnamedplus
+set ts=2 sw=2 et
+
 " assumes set ignorecase smartcase
 augroup dynamic_smartcase
-    autocmd!
-    autocmd CmdLineEnter : set ignorecase
-    autocmd CmdLineLeave : set noignorecase
+  autocmd!
+  autocmd CmdLineEnter : set ignorecase
+  autocmd CmdLineLeave : set noignorecase
 augroup END
 " syntax enable
 
@@ -38,6 +40,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'hotoo/pangu.vim'
+Plug 'thaerkh/vim-indentguides'
 if has("nvim")
   Plug 'ncm2/ncm2-ultisnips'
   Plug 'SirVer/ultisnips'
@@ -111,4 +114,5 @@ let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
-" let g:Powerline_symbols = 'fancy'
+" Config for vim-indentguides
+let g:indentguides_ignorelist = ['text','txt','md']
