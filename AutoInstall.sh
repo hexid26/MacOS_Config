@@ -30,7 +30,7 @@ if [ $# = 0 ]; then
   echo "没有参数可以使用，当前可以使用的参数如下"
   echo "AutoInstall.sh all -> 安装脚本内所有的程序"
   echo "或者输入支持的程序名称："
-  echo "AutoInstall.sh homebrew mas neovim thefuck pyenv python R autojump proxychain"
+  echo "AutoInstall.sh homebrew mas neovim thefuck pyenv python R autojump proxychain pandoc"
   exit
 fi
 
@@ -170,6 +170,21 @@ if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   fi
   tput setaf 2
   echo "INFO: proxychain already installed!"
+  tput sgr0
+fi
+
+# * install pandoc
+if [[ $var =~ .*pandoc.* ]] || [[ $var =~ .*all.* ]]; then
+  pandocPath="/usr/local/bin/"
+  pandocFile="/usr/local/bin/pandoc"
+  if [ ! -x "$pandocFile" ]; then
+    tput setaf 2
+    echo "INFO: Installing pandoc!"
+    tput sgr0
+    brew install pandoc
+  fi
+  tput setaf 2
+  echo "INFO: pandoc already installed!"
   tput sgr0
 fi
 
