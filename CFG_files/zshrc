@@ -142,7 +142,9 @@ setopt nocaseglob
 alias cd..="cd .."
 alias cleardsstore="sudo find / -name '.DS_Store' -depth -exec rm {} \;"
 alias l="ls -lhF"
+alias lr="ls -lhFR"
 alias ll="ls -alhF"
+alias llr="ls -alhFR"
 if [ -f "/usr/local/bin/nvim" -o -f "/usr/bin/nvim" ]; then
   alias vi="nvim"
   alias vim="nvim"
@@ -151,7 +153,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzshconfig="nvim ~/.oh-my-zsh"
 alias update-pip="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias update-zsh='cd ~/.oh-my-zsh;git pull;cd ~/.oh-my-zsh/custom/themes/powerlevel10k;git pull'
-alias git-proxy-on='git config --global http.proxy socks5://127.0.0.1:1080; git config --global https.proxy socks5://127.0.0.1:1080'
+alias git-proxy-on='git config --global http.proxy socks5://127.0.0.1:1080'
 alias git-proxy-off='git config --global --unset-all http.proxy;git config --global --unset-all https.proxy'
 if [ "$OS_TYPE"x = "darwin"x ]; then
   alias update-brew="brew update;brew upgrade;brew cleanup;brew doctor"
