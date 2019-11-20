@@ -74,10 +74,13 @@ if [ $# = 0 ]; then
 fi
 
 sys_install=""
+sys_update=""
 if [ "$CURRENT_OS"x = "ubuntu"x ]; then
   sys_install="sudo apt-get install -y -q"
+  sys_update="sudo apt-get update"
 elif [ "$CURRENT_OS"x = "centos"x ]; then
   sys_install="sudo yum install -y"
+  sys_update="sudo yum update"
 else
   tput setaf 1
   echo "Unsupport OS, EXIT"
@@ -114,7 +117,8 @@ if [[ $var =~ .*devtools.* ]] || [[ $var =~ .*all.* ]]; then
   echo "Installing packages for dev"
   tput sgr0
   echo "Installing: "
-  sudo apt-get install software-properties-common python-software-properties
+  eval "$sys_install software-properties-common python-software-properties"
+  eval "$sys_update"
   for idx in automake build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat gawk g++ gcc gettext git htop libbz2-dev libffi-devel libffi-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev unzip vim wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
     echo -e "$idx \c"
     eval "$sys_install $idx > /dev/null 2>&1"
