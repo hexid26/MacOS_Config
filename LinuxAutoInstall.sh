@@ -255,6 +255,11 @@ if [[ $var =~ .*neovim.* ]] || [[ $var =~ .*all.* ]]; then
   sudo make install
   cd ..
   sudo rm -rf neovim
+  if [ "$CURRENT_OS"x = "ubuntu"x ]; then
+    sudo add-apt-repository ppa:jonathonf/vim
+    eval "$sys_update"
+    eval "$sys_install vim"
+  fi
   cd $BASEPATH
 fi
 ./shells/cfgVim.sh
