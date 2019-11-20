@@ -69,7 +69,7 @@ if [ $# = 0 ]; then
   echo "没有参数可以使用，当前可以使用的参数如下"
   echo "AutoInstall.sh all -> 安装脚本内所有的程序"
   echo "或者输入支持的程序名称："
-  echo "AutoInstall.sh EPEL pyenv python thefuck vscode autojump Shadowsocks proxychain"
+  echo "AutoInstall.sh EPEL devtools pyenv python thefuck vscode autojump Shadowsocks proxychain"
   exit
 fi
 
@@ -109,12 +109,18 @@ if [[ $var =~ .*EPEL.* ]] || [[ $var =~ .*all.* ]]; then
 fi
 
 # * install necessary packages
-tput setaf 2
-echo "Installing packages for dev"
-tput sgr0
-for idx in build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat g++ gcc gettext git libbz2-dev libffi-devel libffi-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
-  eval "$sys_install $idx"
-done
+if [[ $var =~ .*devtools.* ]] || [[ $var =~ .*all.* ]]; then
+  tput setaf 2
+  echo "Installing packages for dev"
+  tput sgr0
+  echo "Installing: "
+  sudo apt-get install software-properties-common python-software-properties
+  for idx in automake build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat gawk g++ gcc gettext git htop libbz2-dev libffi-devel libffi-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev unzip vim wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
+    echo -e "$idx \c"
+    eval "$sys_install $idx > /dev/null 2>&1"
+  done
+  echo "done"
+fi
 
 # * 关闭防火墙
 tput setaf 2
@@ -218,11 +224,15 @@ fi
 # * install proxychains4
 if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   tput setaf 2
-  echo "Installing proxychains4"
+  echo "Installing proxychains & SSR"
   tput sgr0
+  eval "$sys_install shadowsocks*"
   eval "$sys_install proxychains4"
+  eval "$sys_install proxychains"
   mkdir -p ~/.proxychains
   cp -f CFG_files/proxychains.conf ~/.proxychains/
+  git clone -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git ~/shadowsocksr
+  # TODO ssr 的 client 需要配置
 fi
 
 # * Installing (config) vim&neovim
@@ -233,10 +243,10 @@ if [[ $var =~ .*neovim.* ]] || [[ $var =~ .*all.* ]]; then
   tput sgr0
   cd ~
   tput setaf 1
-  echo "!!! Git clone may need proxy"
+  echo "!!! Git clone may need proxy and good network condition"
   tput sgr0
-  git clone --depth 1 https://github.com/neovim/neovim.git
-  cd neovim
+  git clone --depth 1 https://github.com/neovim/neovim.git ~/neovim
+  cd ~/neovim
   make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
   cd ..
