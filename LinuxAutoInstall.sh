@@ -179,7 +179,7 @@ fi
 # * install Shadowsocks-Qt5
 if [[ $var =~ .*Shadowsocks.* ]] || [[ $var =~ .*all.* ]]; then
   tput setaf 2
-  echo "Installing Shadowsocks"
+  echo "Installing Shadowsocks-Qt5"
   tput sgr0
   if [ "$CURRENT_OS"x = "ubuntu"x ]; then
     sudo add-apt-repository -y ppa:hzwhuang/ss-qt5
@@ -230,7 +230,8 @@ if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   tput setaf 2
   echo "Installing proxychains & SSR"
   tput sgr0
-  eval "$sys_install shadowsocks*"
+  eval "$sys_install shadowsocks"
+  eval "$sys_install shadowsocks-libev"
   eval "$sys_install proxychains4"
   eval "$sys_install proxychains"
   mkdir -p ~/.proxychains
@@ -254,7 +255,7 @@ if [[ $var =~ .*neovim.* ]] || [[ $var =~ .*all.* ]]; then
   make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
   cd ..
-  sudo rm -rf neovim
+  # sudo rm -rf neovim
   if [ "$CURRENT_OS"x = "ubuntu"x ]; then
     sudo add-apt-repository ppa:jonathonf/vim
     eval "$sys_update"

@@ -1,5 +1,7 @@
 # MacOS/Linux config scripts
 
+目前对 Linux 服务器版本不够友好，会安装带`QT`的程序。
+
 ## What to Install / Config
 
 This is the list what to do.  
