@@ -157,6 +157,8 @@ alias git-proxy-on='git config --global http.proxy socks5://127.0.0.1:1080;git c
 alias git-proxy-off='git config --global --unset-all http.proxy;git config --global --unset-all https.proxy'
 if [ "$OS_TYPE"x = "darwin"x ]; then
   alias update-brew="brew update;brew upgrade;brew cleanup;brew doctor"
+  alias fixscreen='sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.screensharing.plist &&  sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist'
+
 fi
 if [ "$OS_TYPE"x = "linux"x ]; then
   alias update-pac="genpac --pac-proxy \"SOCKS5 127.0.0.1:1080\" --gfwlist-proxy=\"SOCKS5 127.0.0.1:1080\" --gfwlist-url=https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt --output=\"autoproxy.pac\""
