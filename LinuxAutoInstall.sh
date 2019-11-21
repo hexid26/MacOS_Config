@@ -95,7 +95,7 @@ if [ ! -x "$zshpath1" ] && [ ! -x "$zshpath2" ]; then
   tput setaf 1
   echo "WARNING :: zsh not installed, install zsh now"
   tput sgr0
-  eval "$sys_install zsh"
+  eval "$sys_install zsh > /dev/null 2>&1"
   tput setaf 1
   echo "Using zsh and redo this command again!"
   tput sgr0
@@ -107,7 +107,7 @@ if [[ $var =~ .*EPEL.* ]] || [[ $var =~ .*all.* ]]; then
   if [ "$CURRENT_OS" = "centos" ]; then
     wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -ivh epel-release-latest-7.noarch.rpm
-    eval "$sys_install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm"
+    eval "$sys_install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm > /dev/null 2>&1"
   fi
 fi
 
@@ -117,7 +117,7 @@ if [[ $var =~ .*devtools.* ]] || [[ $var =~ .*all.* ]]; then
   echo "Installing packages for dev"
   tput sgr0
   echo "Installing: "
-  eval "$sys_install software-properties-common python-software-properties"
+  eval "$sys_install software-properties-common python-software-properties > /dev/null 2>&1"
   eval "$sys_update"
   for idx in automake build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat gawk g++ gcc gettext git htop libbz2-dev libffi-devel libffi-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev unzip vim wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
     echo -e "$idx \c"
@@ -184,13 +184,13 @@ if [[ $var =~ .*Shadowsocks.* ]] || [[ $var =~ .*all.* ]]; then
   if [ "$CURRENT_OS"x = "ubuntu"x ]; then
     sudo add-apt-repository -y ppa:hzwhuang/ss-qt5
     sudo apt-get update -y
-    eval "$sys_install libappindicator1 libindicator7"
-    eval "$sys_install shadowsocks-qt5"
+    eval "$sys_install libappindicator1 libindicator7 > /dev/null 2>&1"
+    eval "$sys_install shadowsocks-qt5 > /dev/null 2>&1"
   elif [ "$CURRENT_OS"x = "centos"x ]; then
     wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
     sudo mv librehat-shadowsocks-epel-7.repo /etc/yum.repos.d/
     sudo yum update
-    eval "$sys_install shadowsocks-qt5"
+    eval "$sys_install shadowsocks-qt5 > /dev/null 2>&1"
   fi
 fi
 
@@ -204,11 +204,11 @@ if [[ $var =~ .*Shadowsocks.* ]] || [[ $var =~ .*all.* ]]; then
     sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
     sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
     sudo apt-get update -y
-    eval "$sys_install code"
+    eval "$sys_install code > /dev/null 2>&1"
   elif [ "$CURRENT_OS"x = "centos"x ]; then
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
     sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-    eval "$sys_install code"
+    eval "$sys_install code > /dev/null 2>&1"
   fi
 fi
 
@@ -218,7 +218,7 @@ if [[ $var =~ .*autojump.* ]] || [[ $var =~ .*all.* ]]; then
   echo "Installing autojump"
   tput sgr0
   if [ "$CURRENT_OS"x = "ubuntu"x ]; then
-    eval "$sys_install autojump"
+    eval "$sys_install autojump > /dev/null 2>&1"
     echo "INFO: autojump already installed!"
   elif [ "$CURRENT_OS"x = "centos"x ]; then
     eval "$sys_install autojump_zsh"
@@ -232,8 +232,8 @@ if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   tput sgr0
   # eval "$sys_install shadowsocks"
   # eval "$sys_install shadowsocks-libev"
-  eval "$sys_install proxychains4"
-  eval "$sys_install proxychains"
+  eval "$sys_install proxychains4 > /dev/null 2>&1"
+  eval "$sys_install proxychains > /dev/null 2>&1"
   git clone -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git ~/shadowsocksr
   sudo cp -f CFG_files/proxychains.conf /etc/
   sudo cp -f CFG_files/ssr_client.json /etc/shadowsocks.json
@@ -259,7 +259,7 @@ if [[ $var =~ .*neovim.* ]] || [[ $var =~ .*all.* ]]; then
   if [ "$CURRENT_OS"x = "ubuntu"x ]; then
     sudo add-apt-repository ppa:jonathonf/vim
     eval "$sys_update"
-    eval "$sys_install vim"
+    eval "$sys_install vim > /dev/null 2>&1"
   fi
   cd $BASEPATH
 fi

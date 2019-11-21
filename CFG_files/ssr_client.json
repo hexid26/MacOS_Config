@@ -12,7 +12,7 @@
   "obfs_param": "",
   "timeout": 120,
   "udp_timeout": 60,
-  "dns_ipv6": fasle,
+  "dns_ipv6": false,
   "connect_verbose_info": 0,
   "redirect": "",
   "fast_open": true
