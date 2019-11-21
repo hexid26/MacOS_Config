@@ -230,13 +230,13 @@ if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   tput setaf 2
   echo "Installing proxychains & SSR"
   tput sgr0
-  eval "$sys_install shadowsocks"
-  eval "$sys_install shadowsocks-libev"
+  # eval "$sys_install shadowsocks"
+  # eval "$sys_install shadowsocks-libev"
   eval "$sys_install proxychains4"
   eval "$sys_install proxychains"
-  mkdir -p ~/.proxychains
-  cp -f CFG_files/proxychains.conf ~/.proxychains/
   git clone -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git ~/shadowsocksr
+  sudo cp -f CFG_files/proxychains.conf /etc/
+  sudo cp -f CFG_files/ssr_client.json /etc/shadowsocks.json
   # TODO ssr 的 client 需要配置
 fi
 
