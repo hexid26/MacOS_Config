@@ -235,8 +235,8 @@ if [[ $var =~ .*proxychain.* ]] || [[ $var =~ .*all.* ]]; then
   eval "$sys_install proxychains4 > /dev/null 2>&1"
   eval "$sys_install proxychains > /dev/null 2>&1"
   git clone -b manyuser https://github.com/shadowsocksrr/shadowsocksr.git ~/shadowsocksr
-  sudo cp -f CFG_files/proxychains.conf /etc/
-  sudo cp -f CFG_files/ssr_client.json /etc/shadowsocks.json
+  sudo cp -n CFG_files/proxychains.conf /etc/
+  sudo cp -n CFG_files/ssr_client.json /etc/shadowsocks.json
   # TODO ssr 的 client 需要配置
 fi
 
