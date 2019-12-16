@@ -172,7 +172,7 @@ if [[ $var =~ .*pyenv.* ]] || [[ $var =~ .*all.* ]]; then
     CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib pyenv install -v 3.7.0
     pyenv global 3.7.0
     pip install --upgrade pip
-    python -m pip install pylint numpy threadpool thefuck yapf networkx neovim
+    python -m pip install pylint threadpool thefuck yapf networkx neovim
   else
     ./shells/installPy.sh 3.7.0
   fi
