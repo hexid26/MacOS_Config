@@ -39,7 +39,7 @@ function findCurrentOS() {
       }
       ;;
     "Linux")
-      {
+      { 
         # If available, use LSB to identify distribution
         if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
           DISTRO=$(gawk -F= '/^ID=/{print $2}' /etc/os-release)
@@ -81,6 +81,9 @@ if [ "$CURRENT_OS"x = "ubuntu"x ]; then
 elif [ "$CURRENT_OS"x = "centos"x ]; then
   sys_install="sudo yum install -y"
   sys_update="sudo yum update"
+elif [ "$CURRENT_OS"x = "uos"x ]; then
+  sys_install="sudo apt-get install -y -q"
+  sys_update="sudo apt-get update"
 else
   tput setaf 1
   echo "Unsupport OS, EXIT"
