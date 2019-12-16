@@ -168,7 +168,11 @@ if [[ $var =~ .*pyenv.* ]] || [[ $var =~ .*all.* ]]; then
   cp CFG_files/zshrc ~/.zshrc
   source ~/.zshrc
   pyenv update
-  ./shells/installPy.sh 3.7.0
+  if [ "$CURRENT_OS"x = "uos"x ]; then 
+    CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib pyenv install -v 3.7.0
+  else
+    ./shells/installPy.sh 3.7.0
+  fi
 fi
 
 # * install thefuck

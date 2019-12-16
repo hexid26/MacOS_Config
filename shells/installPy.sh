@@ -26,7 +26,7 @@ function installPy() {
     tput setaf 2
     echo "Installing Python $version"
     tput sgr0
-    pyenv install $version
+    pyenv install -v $version
   fi
   pyenv rehash
   pyenv global $version
