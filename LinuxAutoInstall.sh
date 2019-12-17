@@ -39,7 +39,7 @@ function findCurrentOS() {
       }
       ;;
     "Linux")
-      { 
+      {
         # If available, use LSB to identify distribution
         if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
           DISTRO=$(gawk -F= '/^ID=/{print $2}' /etc/os-release)
@@ -122,7 +122,7 @@ if [[ $var =~ .*devtools.* ]] || [[ $var =~ .*all.* ]]; then
   echo "Installing: "
   eval "$sys_install software-properties-common python-software-properties > /dev/null 2>&1"
   eval "$sys_update"
-  for idx in automake build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat gawk g++ gcc gettext git htop libbz2-dev libffi-devel libffi-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev unzip vim wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
+  for idx in automake build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fuse-exfat gawk g++ gcc gettext git htop libbz2-dev libffi-devel libffi-dev libgit2-dev libglu1-mesa libglu1-mesa-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libtool libtool-bin libtool-doc libx11-dev libxi-dev libxmu-dev llvm openssh openssh-server openssl-devel qt5-qtwebkit readline-devel sqlite sqlite-devel tk-dev unzip vim wget xz xz-devel xz-utils zlib-devel zlib1g-dev zsh; do
     echo -e "$idx \c"
     eval "$sys_install $idx > /dev/null 2>&1"
   done
@@ -168,7 +168,7 @@ if [[ $var =~ .*pyenv.* ]] || [[ $var =~ .*all.* ]]; then
   cp CFG_files/zshrc ~/.zshrc
   source ~/.zshrc
   pyenv update
-  if [ "$CURRENT_OS"x = "uos"x ]; then 
+  if [ "$CURRENT_OS"x = "uos"x ]; then
     CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib pyenv install -v 3.7.0
     pyenv global 3.7.0
     pip install --upgrade pip
@@ -262,7 +262,7 @@ if [[ $var =~ .*neovim.* ]] || [[ $var =~ .*all.* ]]; then
   tput sgr0
   git clone --depth 1 https://github.com/neovim/neovim.git ~/neovim
   cd ~/neovim
-  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  make
   sudo make install
   cd ..
   # sudo rm -rf neovim
@@ -301,3 +301,8 @@ pip install genpac
 tput setaf 2
 echo "# ${SCRIPT_NAME} Done"
 tput sgr0
+
+if [ "$CURRENT_OS"x = "uos"x ]; then
+  zsh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/gitstatus/master/build.zsh)"
+  cp -f /tmp/gitstatus/gitstatus/bin/gitstatusd-* ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/bin/
+fi

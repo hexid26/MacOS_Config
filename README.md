@@ -29,6 +29,10 @@ build-essential bzip2 bzip2-devel clang cmake curl exfat-utils freeglut3-dev fus
 v
 ```
 
+**For Linux (UOS on MIPS)**
+
+目前测试成功的有 `devtools` `pyenv` `python` `thefuck` `autojump` `Shadowsocks` `proxychain`
+
 ●　**CONFIGURATION**
 
 - Install `oh-my-zsh`
@@ -66,6 +70,10 @@ cd ..
 ----
 
 ## UPDATE
+
+### 2019-12-17
+- Add UOS support.
+
 ### 2019-11-16
 - Add `proxychain` for `Linux`
 
