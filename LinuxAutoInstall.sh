@@ -304,5 +304,5 @@ tput sgr0
 
 if [ "$CURRENT_OS"x = "uos"x ]; then
   zsh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/gitstatus/master/build.zsh)"
-  cp -f /tmp/gitstatus/gitstatus/bin/gitstatusd-* ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/bin/
+  cp -f /tmp/gitstatus/gitstatus/usrbin/gitstatusd-* ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/bin/
 fi
