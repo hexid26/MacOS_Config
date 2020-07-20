@@ -29,7 +29,7 @@ if [ ! -x ~/"$omzFolder" ]; then
   tput setaf 2
   echo "Installing oh-my-zsh"
   tput sgr0
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+  sh -c "CHSH=no RUNZSH=no KEEP_ZSHRC=no $(http_proxy=socks5://127.0.0.1:1086 https_proxy=socks5://127.0.0.1:1086 curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 fi
 if [ ! -d "~/.oh-my-zsh/custom/themes/powerlevel10k/" ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
@@ -64,8 +64,8 @@ source ~/.zshrc
 tput setaf 4
 echo "Config for iTerm2"
 tput sgr0
-mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles/
-cp -f -v ./CFG_files/hexid26_iTerm2_config ~/Library/Application\ Support/iTerm2/DynamicProfiles/
+# mkdir -p ~/Library/Application\ Support/iTerm2/DynamicProfiles/
+# cp -f -v ./CFG_files/hexid26_iTerm2_config ~/Library/Application\ Support/iTerm2/DynamicProfiles/
 
 # * Config for Proxychains-Ng
 tput setaf 4

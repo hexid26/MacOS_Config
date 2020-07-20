@@ -1,8 +1,13 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl -Lo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" let g:python2_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = expand('~/.pyenv/shims/python')
+let g:loaded_clipboard_provider = 1
+let g:UltiSnipsUsePythonVersion=3
 
 set guifont=MesloLGS\ Nerd\ Font
 set laststatus=2
@@ -13,7 +18,7 @@ set fillchars+=stl:\ ,stlnc:\
 set termencoding=utf8
 set hlsearch
 set background=dark
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set ts=2 sw=2 et
 set conceallevel=0 
 

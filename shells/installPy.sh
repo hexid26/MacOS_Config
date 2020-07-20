@@ -37,7 +37,7 @@ function installPy() {
   echo "Installing pip and components"
   tput sgr0
   pip install --upgrade pip
-  python -m pip install pylint numpy threadpool thefuck scipy yapf matplotlib networkx neovim
+  python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn pylint numpy threadpool thefuck scipy yapf matplotlib networkx neovim
 }
 
 installPy

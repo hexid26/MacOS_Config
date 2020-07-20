@@ -13,7 +13,7 @@
 # -----------------------------------------------------------------------------
 # Version [1.0]
 # MacOS 自动安装软件脚本
-
+# set -e
 SCRIPT_NAME=$(basename ${0}) # 脚本名称
 BASEPATH=$(
   cd $(dirname $0)
@@ -48,7 +48,7 @@ if [[ $var =~ .*homebrew.* ]] || [[ $var =~ .*all.* ]]; then
     tput setaf 2
     echo "INFO: Installing brew!"
     tput sgr0
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
   tput setaf 2
   echo "INFO: Brew already installed!"
@@ -117,13 +117,13 @@ if [[ $var =~ .*pyenv.* ]] || [[ $var =~ .*all.* ]]; then
   source ~/.zshrc
 fi
 
-# * install python 3.7.0
+# * install python 3.8.1
 brew install zlib
 if [[ $var =~ .*python.* ]] || [[ $var =~ .*all.* ]]; then
   echo "Warning: Make sure that the Xcode command line tools install correctly."
   echo "Warning: Python will be compiled and wait for moments."
   source ~/.zshrc
-  ./shells/installPy.sh 3.7.0
+  ./shells/installPy.sh 3.8.1
 fi
 
 # * install R

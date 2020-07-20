@@ -25,12 +25,12 @@ tput sgr0
 # 1 红 2 绿 3 黄 4 蓝 5 粉 6 青 7 白 8 灰 9 橙 10 墨绿
 
 # brew install coreutils
-# pyenv global 3.7.0
+# pyenv global 3.8.1
 # pip install --user powerline-status
 # * Plugins Manager for vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+http_proxy=socks5://127.0.0.1:1086 https_proxy=socks5://127.0.0.1:1086 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # * Plugins Manager for neovim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+http_proxy=socks5://127.0.0.1:1086 https_proxy=socks5://127.0.0.1:1086 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp -f -v ./CFG_files/vimrc ~/.vimrc
 if [ ! -f "~/.config/nvim/init.vim" ]; then
   mkdir -p ~/.config/nvim

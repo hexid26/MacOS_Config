@@ -12,4 +12,4 @@ echo 'export PATH="${HOME}/.pyenv/bin:$PATH"'
 echo 'eval "$(pyenv init -)"'
 echo 'eval "$(pyenv virtualenv-init -)"'
 echo "重新 login 确保 pyenv 可以正常工作后，用 pyenv install 安装 Python 指定版本，例如："
-echo "pyenv install 3.7.0"
+echo "pyenv install 3.8.1"

@@ -162,19 +162,19 @@ source ~/.zshrc
 # * install pyenv
 if [[ $var =~ .*pyenv.* ]] || [[ $var =~ .*all.* ]]; then
   tput setaf 2
-  echo "Installing pyenv and python 3.7.0"
+  echo "Installing pyenv and python 3.8.1"
   tput sgr0
-  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
+  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | SHELL=zsh zsh
   cp CFG_files/zshrc ~/.zshrc
   source ~/.zshrc
   pyenv update
   if [ "$CURRENT_OS"x = "uos"x ]; then
-    CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib pyenv install -v 3.7.0
-    pyenv global 3.7.0
+    CFLAGS=-I/usr/include/openssl LDFLAGS=-L/usr/lib pyenv install -v 3.8.1
+    pyenv global 3.8.1
     pip install --upgrade pip
     python -m pip install pylint threadpool thefuck yapf networkx neovim
   else
-    ./shells/installPy.sh 3.7.0
+    ./shells/installPy.sh 3.8.1
   fi
 fi
 
